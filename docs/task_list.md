@@ -42,7 +42,7 @@
 | No | タスク | 優先度 | 状態 | 完了条件 | メモ |
 |---|---|---|---|---|---|
 | 2-1 | ReviewItemの項目を決める | 高 | 完了 | ID、タイトル、カテゴリなどの項目が決まっている | id, date, category, title, memo, understanding に決定|
-| 2-2 | クラス構成を決める | 高 | 未着手 | Main, ReviewItem, ReviewManager の役割が決まっている | |
+| 2-2 | クラス構成を決める | 高 | 完了 | Main, ReviewItem, ReviewManager の役割が決まっている | |
 | 2-3 | メニュー構成を決める | 高 | 未着手 | コンソールに表示するメニューが決まっている | |
 
 ## Phase 3：最小実装
