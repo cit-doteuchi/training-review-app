@@ -10,43 +10,46 @@ public class Main {
         reviewManager.ReviewItemAddDemo();
         
         
+        while (true) {
+            showMenu();
 
-        showMenu();
-
-        String input = sc.nextLine();
-        System.out.println("入力された番号: " + input);
+            String input = sc.nextLine();
+            System.out.println("入力された番号: " + input);
         
 
-        switch (input) {
-            case "1": //登録
+            switch (input) {
+                case "1": //登録
+                    inputReviewItem(sc, reviewManager);
+                    break;
+                case "2": //一覧表示
+                    reviewManager.showReviewItems();
+                    break;
+                case "3": //詳細表示
                 
-                break;
-            case "2": //一覧表示
-                reviewManager.showReviewItems(reviewManager.reviewItems);
-                break;
-            case "3": //詳細表示
+                    break;
+                case "4": //編集
                 
-                break;
-            case "4": //編集
+                    break;
+                case "5": //成果サマリー表示
                 
-                break;
-            case "5": //成果サマリー表示
-                
-                break;
-            case "0": //保存して終了
-                
-                break;
-            default:
-                break;
-        } 
+                    break;
+                case "0": //保存して終了
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("正しい番号を入力してください");
+                    break;
+            } 
+        }
+        
             
-        sc.close();
+        
     }
 
 
 
     private static void showMenu() {
-
+        System.out.println();
         System.out.println("=== 研修復習ログアプリ ===");
         System.out.println();
         System.out.println("1. 復習項目を登録する");
@@ -59,4 +62,50 @@ public class Main {
         System.out.print("番号を入力してください：");
 
     }
+
+
+    private static void inputReviewItem(Scanner sc, ReviewManager reviewManager){
+        System.out.println();
+        System.out.println("=== 復習項目登録 ===");
+
+        System.out.print("カテゴリを入力してください：");
+        String category = sc.nextLine();
+
+        System.out.print("タイトルを入力してください：");
+        String title = sc.nextLine();
+
+        System.out.print("メモを入力してください：");
+        String memo = sc.nextLine();
+
+        int understanding = inputUndetstanding(sc);
+
+        reviewManager.addReviewItem(category, title, memo, understanding);
+
+        System.out.println("復習項目を登録しました");
+
+
+    }
+
+
+    private static int inputUndetstanding(Scanner sc){
+        while (true){
+            System.out.print("理解度を1から5で入力してください：");
+            String input = sc.nextLine();
+
+            try {
+                
+                int understanding = Integer.parseInt(input);
+
+                if(understanding >= 1 && understanding <= 5){
+                    return understanding;
+                }
+
+
+            } catch (NumberFormatException e) {
+                System.out.println("数字を入力してください");
+            }
+
+        }
+    }
+
 }
