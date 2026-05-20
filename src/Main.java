@@ -7,8 +7,8 @@ public class Main {
     
         
         ReviewManager reviewManager = new ReviewManager();
-        reviewManager.ReviewItemAddDemo();
-        
+        reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
+        reviewManager.addReviewItem("html", "例", "めも" , 4);
         
         while (true) {
             showMenu();
@@ -77,7 +77,7 @@ public class Main {
         System.out.print("メモを入力してください：");
         String memo = sc.nextLine();
 
-        int understanding = inputUndetstanding(sc);
+        int understanding = inputUnderstanding(sc);
 
         reviewManager.addReviewItem(category, title, memo, understanding);
 
@@ -87,7 +87,7 @@ public class Main {
     }
 
 
-    private static int inputUndetstanding(Scanner sc){
+    private static int inputUnderstanding(Scanner sc){
         while (true){
             System.out.print("理解度を1から5で入力してください：");
             String input = sc.nextLine();

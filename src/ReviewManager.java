@@ -6,40 +6,40 @@ public class ReviewManager {
 
     ArrayList<ReviewItem> reviewItems = new ArrayList<>();
 
-    public void ReviewItemAddDemo(){
+    // public void ReviewItemAddDemo(){
 
-        ReviewItem item1 = new ReviewItem(
-            1, 
-            LocalDate.now(),
-            "java", 
-            "aaa", 
-            "memodesu", 
-            1
-        );
+    //     ReviewItem item1 = new ReviewItem(
+    //         1, 
+    //         LocalDate.now(),
+    //         "java", 
+    //         "aaa", 
+    //         "memodesu", 
+    //         1
+    //     );
 
-        ReviewItem item2 = new ReviewItem(
-            2, 
-            LocalDate.now(),
-            "SQL", 
-            "bbb", 
-            "メモです", 
-            5
-        );
+    //     ReviewItem item2 = new ReviewItem(
+    //         2, 
+    //         LocalDate.now(),
+    //         "SQL", 
+    //         "bbb", 
+    //         "メモです", 
+    //         5
+    //     );
 
-        ReviewItem item3 = new ReviewItem(
-            3, 
-            LocalDate.now(),
-            "html", 
-            "あああ", 
-            "メモ", 
-            3
-        );
+    //     ReviewItem item3 = new ReviewItem(
+    //         3, 
+    //         LocalDate.now(),
+    //         "html", 
+    //         "あああ", 
+    //         "メモ", 
+    //         3
+    //     );
         
-        reviewItems.add(item1);
-        reviewItems.add(item2);
-        reviewItems.add(item3);
+    //     reviewItems.add(item1);
+    //     reviewItems.add(item2);
+    //     reviewItems.add(item3);
 
-    }
+    // }
     
     public void addReviewItem(String category, String title, String memo, int understanding){
         ReviewItem item = new ReviewItem(
