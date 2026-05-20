@@ -25,7 +25,7 @@ public class Main {
                     reviewManager.showReviewItems();
                     break;
                 case "3": //詳細表示
-                
+                    reviewManager.showReviewItemDetail(sc, reviewManager);
                     break;
                 case "4": //編集
                 
