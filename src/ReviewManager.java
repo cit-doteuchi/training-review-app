@@ -7,7 +7,7 @@ public class ReviewManager {
 
     ArrayList<ReviewItem> reviewItems = new ArrayList<>();
 
-    // public void ReviewItemAddDemo(){
+    // public void reviewItemAddDemo(){
 
     //     ReviewItem item1 = new ReviewItem(
     //         1, 
@@ -136,5 +136,53 @@ public class ReviewManager {
 
         return null;
     }
+
+
+
+    public boolean updateCategory(int id, String category){
+        ReviewItem item = findById(id);
+
+        if (item == null){
+            return false;
+        }
+
+        item.setCategory(category);
+        return true;
+    }
+
+    public boolean updateTitle(int id, String title){
+        ReviewItem item = findById(id);
+
+        if (item == null){
+            return false;
+        }
+
+        item.setTitle(title);
+        return true;
+    }
+
+    public boolean updateMemo(int id, String memo){
+        ReviewItem item = findById(id);
+
+        if (item == null){
+            return false;
+        }
+
+        item.setMemo(memo);
+        return true;
+    }
+
+    public boolean updateUnderstanding(int id, int understanding){
+        ReviewItem item = findById(id);
+
+        if (item == null){
+            return false;
+        }
+
+        item.setUnderstanding(understanding);
+        return true;
+    }
+
+
 
 }

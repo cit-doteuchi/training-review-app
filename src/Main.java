@@ -28,7 +28,7 @@ public class Main {
                     reviewManager.showReviewItemDetail(sc, reviewManager);
                     break;
                 case "4": //編集
-                
+                    inputEditReviewItem(sc,reviewManager);
                     break;
                 case "5": //成果サマリー表示
                 
@@ -107,5 +107,81 @@ public class Main {
 
         }
     }
+
+
+    private static void inputEditReviewItem(Scanner sc, ReviewManager reviewManager){
+        System.out.println();
+        System.out.println("=== 復習項目編集 ===");
+
+        System.out.print("編集するIDを入力してください");
+        String idInput = sc.nextLine();
+
+        try {
+        int id = Integer.parseInt(idInput);
+
+        ReviewItem item = reviewManager.findById(id);
+
+        if (item == null) {
+            System.out.println("指定されたIDの復習項目は見つかりませんでした。");
+            return;
+        }
+
+        System.out.println("編集する項目を選んでください。");
+        System.out.println("1. カテゴリ");
+        System.out.println("2. タイトル");
+        System.out.println("3. メモ");
+        System.out.println("4. 理解度");
+        System.out.println("0. 戻る");
+        System.out.print("番号を入力してください：");
+
+        String choice = sc.nextLine();
+        boolean updated = false;
+
+        switch (choice) {
+            case "1":
+                System.out.print("新しいカテゴリを入力してください：");
+                String category = sc.nextLine();
+                updated = reviewManager.updateCategory(id, category);
+                break;
+
+            case "2":
+                System.out.print("新しいタイトルを入力してください：");
+                String title = sc.nextLine();
+                updated = reviewManager.updateTitle(id, title);
+                break;
+
+            case "3":
+                System.out.print("新しいメモを入力してください：");
+                String memo = sc.nextLine();
+                updated = reviewManager.updateMemo(id, memo);
+                break;
+
+            case "4":
+                int understanding = inputUnderstanding(sc);
+                updated = reviewManager.updateUnderstanding(id, understanding);
+                break;
+
+            case "0":
+                System.out.println("編集をキャンセルしました。");
+                return;
+
+            default:
+                System.out.println("正しい番号を入力してください。");
+                return;
+        }
+
+        if (updated) {
+            System.out.println("復習項目を編集しました。");
+        } else {
+            System.out.println("復習項目を編集できませんでした。");
+        }
+
+        } catch (NumberFormatException e) {
+            System.out.println("IDは数字で入力してください。");
+        }
+        
+    }
+
+    
 
 }
