@@ -183,6 +183,17 @@ public class ReviewManager {
         return true;
     }
 
+    
+    public boolean deleteReviewItem(int id) {
+    ReviewItem item = findById(id);
+
+    if (item == null) {
+        return false;
+    }
+
+    reviewItems.remove(item);
+    return true;
+    }
 
 
 }

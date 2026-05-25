@@ -33,6 +33,9 @@ public class Main {
                 case "5": //成果サマリー表示
                 
                     break;
+                case "6":
+                    inputDeleteReviewItem(sc, reviewManager);
+                    break;
                 case "0": //保存して終了
                     sc.close();
                     return;
@@ -57,6 +60,7 @@ public class Main {
         System.out.println("3. 復習項目の詳細を表示する");
         System.out.println("4. 復習項目を編集する");
         System.out.println("5. 成果サマリーを表示する");
+        System.out.println("6. 復習項目を削除する");
         System.out.println("0. 保存して終了する");
         System.out.println();
         System.out.print("番号を入力してください：");
@@ -183,5 +187,47 @@ public class Main {
     }
 
     
+
+    private static void inputDeleteReviewItem(Scanner sc, ReviewManager reviewManager){
+        System.out.println();
+        System.out.println("=== 復習項目削除 ===");
+
+        System.out.print("削除するIDを入力してください：");
+        String idInput = sc.nextLine();
+
+        try {
+            int id = Integer.parseInt(idInput);
+
+            ReviewItem item = reviewManager.findById(id);
+
+            if (item == null) {
+                System.out.println("指定されたIDの復習項目は見つかりませんでした。");
+                return;
+            }
+
+            System.out.println("以下の項目を削除します。");
+            System.out.println(item.toString());
+            System.out.print("本当に削除しますか？ y/n：");
+
+            String confirm = sc.nextLine();
+
+            if (!confirm.equalsIgnoreCase("y")) {
+                System.out.println("削除をキャンセルしました。");
+                return;
+            }
+
+            boolean deleted = reviewManager.deleteReviewItem(id);
+
+            if (deleted) {
+                System.out.println("復習項目を削除しました。");
+            } else {
+                System.out.println("復習項目を削除できませんでした。");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("IDは数字で入力してください。");
+        }
+    }
+
 
 }
