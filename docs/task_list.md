@@ -72,12 +72,12 @@
 | No | タスク | 優先度 | 状態 | 完了条件 | メモ |
 |---|---|---|---|---|---|
 | 4.5-1 | inputUnderstandingのtypo修正 | 高 | 完了 | inputUndetstanding を inputUnderstanding に修正し、正常に実行できる | Main.java |
-| 4.5-2 | 理解度の最小値・最大値を定数化 | 中 | 未着手 | 理解度判定で使う 1 と 5 を定数に置き換え、数値の意味が分かる状態になっている | Main.java |
-| 4.5-3 | 理解度のenum化を検討 | 中 | 未着手 | 理解度を int のまま扱うか、enum にするか判断できている | Main.java |
-| 4.5-4 | toStringの表示処理をString.formatに変更 | 中 | 未着手 | ReviewItem の表示文字列を String.format で整形できている | ReviewItem.java |
-| 4.5-5 | 一覧表示用メソッドの分離を検討 | 中 | 未着手 | toString を一覧表示用として使い続けるか、別メソッドに分けるか判断できている | ReviewItem.java |
-| 4.5-6 | デモ用メソッド名の命名修正または削除 | 中 | 未着手 | ReviewItemAddDemo の命名を修正するか、不要であれば削除できている | ReviewManager.java |
-| 4.5-7 | showReviewItemsの標準出力処理をMain側へ移管 | 中 | 未着手 | ReviewManager が直接標準出力せず、Main側で表示処理を担当できている | ReviewManager.java / Main.java |
+| 4.5-2 | 理解度の最小値・最大値を定数化 | 中 | 完了 | 理解度判定で使う 1 と 5 を定数に置き換え、数値の意味が分かる状態になっている | Main.java |
+| 4.5-3 | 理解度のenum化を検討 | 中 | 完了 | 理解度を int のまま扱うか、enum にするか判断できている | Main.java |
+| 4.5-4 | toStringの表示処理をString.formatに変更 | 中 | 完了 | ReviewItem の表示文字列を String.format で整形できている | ReviewItem.java |
+| 4.5-5 | 一覧表示用メソッドの分離を検討 | 中 | 完了 | toString を一覧表示用として使い続けるか、別メソッドに分けるか判断できている | ReviewItem.java |
+| 4.5-6 | デモ用メソッド名の命名修正または削除 | 中 | 完了 | ReviewItemAddDemo の命名を修正するか、不要であれば削除できている | ReviewManager.java |
+| 4.5-7 | showReviewItemsの標準出力処理をMain側へ移管 | 中 | 完了 | ReviewManager が直接標準出力せず、Main側で表示処理を担当できている | ReviewManager.java / Main.java |
 | 4.5-8 | ID採番処理の見直しを検討 | 低 | 未着手 | getNextId で毎回全件走査する形のままにするか、最大IDを保持する方式にするか判断できている | ReviewManager.java |
 | 4.5-9 | 削除機能を見据えたID管理方針を整理 | 低 | 未着手 | 削除後のIDの歯抜けを許容するか、再利用するかの方針が決まっている | 4-6 削除機能と関連 |
 

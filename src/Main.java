@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -22,10 +23,10 @@ public class Main {
                     inputReviewItem(sc, reviewManager);
                     break;
                 case "2": //一覧表示
-                    reviewManager.showReviewItems();
+                    showReviewItems(reviewManager);
                     break;
                 case "3": //詳細表示
-                    reviewManager.showReviewItemDetail(sc, reviewManager);
+                    showReviewItemDetail(sc, reviewManager);
                     break;
                 case "4": //編集
                     inputEditReviewItem(sc,reviewManager);
@@ -68,6 +69,47 @@ public class Main {
     }
 
 
+    private static void showReviewItems(ReviewManager reviewManager) {
+        System.out.println();
+        System.out.println("=== 復習項目 ===");
+
+        List<ReviewItem> items = reviewManager.getAllItems();
+
+        System.out.println("登録件数: " + items.size() + "件");
+
+        for (ReviewItem item : items) {
+            System.out.println(item.toListString());
+        }
+    }
+
+    public static void showReviewItemDetail(Scanner sc, ReviewManager reviewManager){
+        System.out.println();
+        System.out.println("=== 復習項目詳細 ===");
+
+        System.out.print("詳細を表示するIDを入力してください：");
+        String input =  sc.nextLine();
+
+        try{
+            int id = Integer.parseInt(input);
+            ReviewItem item = reviewManager.findById(id);
+
+            if(item == null){
+                System.out.println("指定されたIDの復習項目は見つかりませんでした。");
+                return;
+            }
+
+            System.out.println("ID: " + item.getId());
+            System.out.println("日付: " + item.getDate());
+            System.out.println("カテゴリ: " + item.getCategory());
+            System.out.println("タイトル: " + item.getTitle());
+            System.out.println("メモ: " + item.getMemo());
+            System.out.println("理解度: " + item.getUnderstanding());
+
+        } catch (NumberFormatException e){
+            System.out.println("IDは数字で入力してください");
+        }
+    }
+
     private static void inputReviewItem(Scanner sc, ReviewManager reviewManager){
         System.out.println();
         System.out.println("=== 復習項目登録 ===");
@@ -92,15 +134,19 @@ public class Main {
 
 
     private static int inputUnderstanding(Scanner sc){
+
+        final int MIN_Understanding = 1;
+        final int MAX_Understanding = 5;
+
         while (true){
-            System.out.print("理解度を1から5で入力してください：");
+            System.out.print("理解度を" + MIN_Understanding + "から" + MAX_Understanding + "で入力してください：");
             String input = sc.nextLine();
 
             try {
                 
                 int understanding = Integer.parseInt(input);
 
-                if(understanding >= 1 && understanding <= 5){
+                if(understanding >= MIN_Understanding && understanding <= MAX_Understanding){
                     return understanding;
                 }
 

@@ -57,9 +57,15 @@ public class ReviewItem {
         this.understanding = understanding;
     }
 
-    @Override
-    public String toString(){
-        return "[" + id + "] " + date + "/" + category + "/" + title + "/ 理解度" + understanding; 
-    }
+    public String toListString() {
+    return String.format(
+        "[%d] %s / %s / %s / 理解度: %d",
+        id,
+        date,
+        category,
+        title,
+        understanding
+    );
+}
 
 }
