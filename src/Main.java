@@ -6,40 +6,45 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         //  System.out.println("環境設定OK"); 
     
-        
         ReviewManager reviewManager = new ReviewManager();
+
+
         reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
         reviewManager.addReviewItem("html", "例", "めも" , 4);
         
+        
+
         while (true) {
             showMenu();
 
             String input = sc.nextLine();
+            MenuOption option = MenuOption.fromInput(input);
             System.out.println("入力された番号: " + input);
         
 
-            switch (input) {
-                case "1": //登録
+            switch (option) {
+                case REGISTER: //登録
                     inputReviewItem(sc, reviewManager);
                     break;
-                case "2": //一覧表示
+                case LIST: //一覧表示
                     showReviewItems(reviewManager);
                     break;
-                case "3": //詳細表示
+                case DETAIL: //詳細表示
                     showReviewItemDetail(sc, reviewManager);
                     break;
-                case "4": //編集
+                case EDIT: //編集
                     inputEditReviewItem(sc,reviewManager);
                     break;
-                case "5": //成果サマリー表示
-                
+                case SUMMARY: //成果サマリー表示
+                    showSummary(reviewManager);
                     break;
-                case "6":
+                case DELETE:
                     inputDeleteReviewItem(sc, reviewManager);
                     break;
-                case "0": //保存して終了
+                case EXIT: //保存して終了
                     sc.close();
                     return;
+                case UNKNOWN:
                 default:
                     System.out.println("正しい番号を入力してください");
                     break;
@@ -275,5 +280,39 @@ public class Main {
         }
     }
 
+    
+    private static void showSummary(ReviewManager reviewManager) {
+        System.out.println();
+        System.out.println("=== 成果サマリー ===");
+        System.out.println("総登録件数: " + reviewManager.getTotalCount() + "件");
+    }
+
+
+    public enum MenuOption {
+        REGISTER("1"),
+        LIST("2"),
+        DETAIL("3"),
+        EDIT("4"),
+        SUMMARY("5"),
+        DELETE("6"),
+        EXIT("0"),
+        UNKNOWN("");
+
+        private final String code;
+
+        MenuOption(String code) {
+            this.code = code;
+        }
+
+        public static MenuOption fromInput(String input) {
+            for (MenuOption option : MenuOption.values()) {
+                if (option.code.equals(input)) {
+                    return option;
+                }
+            }
+
+            return UNKNOWN;
+        }
+    }
 
 }

@@ -1,16 +1,17 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ReviewManager {
 
     ArrayList<ReviewItem> reviewItems = new ArrayList<>();
-
+    private int maxId = 0;
     
-    public void addReviewItem(String category, String title, String memo, int understanding){
+    public void addReviewItem( String category, String title, String memo, int understanding){
+        int id = issueNextId();
+
         ReviewItem item = new ReviewItem(
-            getNextId(),
+            id,
             LocalDate.now(),
             category,
             title,
@@ -25,8 +26,18 @@ public class ReviewManager {
 
     public void addItem(ReviewItem item){
         reviewItems.add(item);
+
+        if (item.getId() > maxId) {
+            maxId = item.getId();
+        }
+
     }
 
+
+    private int issueNextId() {
+        maxId++;
+        return maxId;
+    }
 
 
     public int getNextId(){
@@ -114,6 +125,10 @@ public class ReviewManager {
 
     reviewItems.remove(item);
     return true;
+    }
+
+    public int getTotalCount() {
+        return reviewItems.size();
     }
 
 
