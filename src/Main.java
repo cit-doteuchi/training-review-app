@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -284,7 +285,25 @@ public class Main {
     private static void showSummary(ReviewManager reviewManager) {
         System.out.println();
         System.out.println("=== 成果サマリー ===");
-        System.out.println("総登録件数: " + reviewManager.getTotalCount() + "件");
+
+        int totalCount = reviewManager.getTotalCount();
+        System.out.println("総登録件数: " + totalCount + "件");
+
+        
+        if (totalCount == 0) {
+            System.out.println("登録されている復習項目はありません。");
+            return;
+        }
+
+        System.out.println();
+        System.out.println("カテゴリ別件数:");
+
+        Map<String, Integer> categoryCounts = reviewManager.getCategoryCounts();
+
+        for (Map.Entry<String, Integer> entry : categoryCounts.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + "件");
+        }
+
     }
 
 

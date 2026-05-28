@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewManager {
 
@@ -129,6 +131,22 @@ public class ReviewManager {
 
     public int getTotalCount() {
         return reviewItems.size();
+    }
+
+
+    public Map<String, Integer> getCategoryCounts() {
+        Map<String, Integer> categoryCounts = new LinkedHashMap<>();
+
+        for (ReviewItem item : reviewItems) {
+            String category = item.getCategory();
+
+            categoryCounts.put(
+                category,
+                categoryCounts.getOrDefault(category, 0) + 1
+            );
+        }
+
+        return categoryCounts;
     }
 
 
