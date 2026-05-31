@@ -141,18 +141,18 @@ public class Main {
 
     private static int inputUnderstanding(Scanner sc){
 
-        final int MIN_Understanding = 1;
-        final int MAX_Understanding = 5;
+        final int MIN_UNDERSTANDING = 1;
+        final int MAX_UNDERSTANDING = 5;
 
         while (true){
-            System.out.print("理解度を" + MIN_Understanding + "から" + MAX_Understanding + "で入力してください：");
+            System.out.print("理解度を" + MIN_UNDERSTANDING + "から" + MAX_UNDERSTANDING + "で入力してください：");
             String input = sc.nextLine();
 
             try {
                 
                 int understanding = Integer.parseInt(input);
 
-                if(understanding >= MIN_Understanding && understanding <= MAX_Understanding){
+                if(understanding >= MIN_UNDERSTANDING && understanding <= MAX_UNDERSTANDING){
                     return understanding;
                 }
 
@@ -258,7 +258,7 @@ public class Main {
             }
 
             System.out.println("以下の項目を削除します。");
-            System.out.println(item.toString());
+            System.out.println(item.toListString());
             System.out.print("本当に削除しますか？ y/n：");
 
             String confirm = sc.nextLine();
@@ -302,6 +302,15 @@ public class Main {
 
         for (Map.Entry<String, Integer> entry : categoryCounts.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue() + "件");
+        }
+
+        System.out.println();
+        System.out.println("理解度別件数:");
+
+        Map<Integer,Integer> understandingCounts = reviewManager.getUnderstandingCounts();
+
+        for(Map.Entry<Integer, Integer> entry : understandingCounts.entrySet()){
+            System.out.println("理解度" + entry.getKey() + ": " + entry.getValue() + "件");
         }
 
     }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ReviewManager {
 
-    ArrayList<ReviewItem> reviewItems = new ArrayList<>();
+    private ArrayList<ReviewItem> reviewItems = new ArrayList<>();
     private int maxId = 0;
     
     public void addReviewItem( String category, String title, String memo, int understanding){
@@ -147,6 +147,26 @@ public class ReviewManager {
         }
 
         return categoryCounts;
+    }
+
+    public Map<Integer, Integer> getUnderstandingCounts(){
+        Map<Integer,Integer> understandingCounts = new LinkedHashMap<>();
+
+        for(int i = 1; i <= 5 ; i++){
+            understandingCounts.put(i, 0);
+        }
+
+        for(ReviewItem item : reviewItems){
+            Integer understanding = item.getUnderstanding();
+
+            understandingCounts.put(
+                understanding,
+                understandingCounts.get(understanding) + 1
+            );
+
+        }
+
+        return understandingCounts;
     }
 
 
