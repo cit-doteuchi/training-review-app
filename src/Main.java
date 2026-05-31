@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ public class Main {
         //  System.out.println("環境設定OK"); 
     
         ReviewManager reviewManager = new ReviewManager();
+        ReviewCsvRepository repository = new ReviewCsvRepository();
 
 
         reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
@@ -44,6 +46,11 @@ public class Main {
                     break;
                 case EXIT: //保存して終了
                     sc.close();
+                    try {
+                        repository.save("data/review_items.csv", reviewManager.getAllItems());
+                    } catch (IOException e) {
+                        System.out.println("CSVへの保存に失敗しました");
+                    }
                     return;
                 case UNKNOWN:
                 default:
@@ -342,5 +349,8 @@ public class Main {
             return UNKNOWN;
         }
     }
+
+
+    
 
 }

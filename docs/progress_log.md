@@ -698,6 +698,56 @@ Phase 5 のタスクを見直し、現在の設計では不要になっている
 
 ---
 
+## 2026-06-01
+
+### 今日やること
+
+Phase 6-1,6-2 として、登録データをCSVファイルに保存できるようにする。
+
+### 作業内容
+
+CSV保存機能を実装した。
+
+まず、CSV保存を担当する ReviewCsvRepository クラスを作成した。
+ReviewCsvRepository には save メソッドを用意し、指定されたファイルパスに ReviewItem の一覧を書き込めるようにした。
+
+save メソッドでは、BufferedWriter と try-with-resources を使用し、ファイル書き込み後に自動で writer が閉じられるようにした。
+CSVファイルには、最初にヘッダー行として `id,date,category,title,memo,understanding` を書き込み、その後、登録済みの ReviewItem を1件ずつCSV形式に変換して出力する形にした。
+
+ReviewItem 1件分をCSVの1行に変換する処理は、toCsvLine メソッドとして分離した。
+これにより、保存処理全体の流れと、1件分の文字列変換処理を分けて整理できた。
+
+また、Main 側では ReviewCsvRepository のインスタンスを作成し、メニュー番号「0：保存して終了する」が選択されたときに、`data/review_items.csv` へ現在の登録データを保存するようにした。
+保存処理で IOException が発生した場合は、CSVへの保存に失敗したことを表示する形にした。
+
+### 完了したこと
+
+* [x] ReviewCsvRepository クラスを作成した
+* [x] save メソッドを作成した
+* [x] BufferedWriter を使ってCSVファイルを書き込めるようにした
+* [x] try-with-resources を使って writer を自動で閉じるようにした
+* [x] CSVのヘッダー行を書き込めるようにした
+* [x] ReviewItem をCSV形式の1行に変換する toCsvLine メソッドを作成した
+* [x] ReviewItem 一覧を1件ずつCSVに書き込めるようにした
+* [x] Main の終了処理からCSV保存を呼び出せるようにした
+* [x] IOException が発生した場合の例外処理を追加した
+* [x] data/review_items.csv が作成されることを確認した
+* [x] task_list.md の 6-2 を完了に更新した
+
+### 今日の成果
+
+登録済みの復習項目をCSVファイルとして保存できるようになった。
+これにより、アプリを終了する際に、現在の復習項目一覧を `data/review_items.csv` に出力できるようになり、データを外部ファイルとして残すための土台ができた。
+また、CSV保存処理を ReviewCsvRepository に分離したことで、Main は終了時の保存呼び出しと表示を担当し、ReviewCsvRepository はファイル書き込み処理を担当する形に整理できた。
+ファイル操作では、BufferedWriter、Files.newBufferedWriter、Path.of、try-with-resources、IOException などを実際に使い、Javaでテキストファイルを書き込む基本的な流れを確認できた。
+
+### 次回やること
+
+Phase 6-3 として、起動時にCSVファイルから保存済みデータを読み込めるようにする。
+
+
+---
+
 ## 記録テンプレート
 
 ## YYYY-MM-DD
