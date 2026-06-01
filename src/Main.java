@@ -11,9 +11,22 @@ public class Main {
         ReviewManager reviewManager = new ReviewManager();
         ReviewCsvRepository repository = new ReviewCsvRepository();
 
+        try {
+            List<ReviewItem> items = repository.load("data/review_items.csv");
+            for(ReviewItem item : items){
+                reviewManager.addItem(item);
+            }
 
-        reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
-        reviewManager.addReviewItem("html", "例", "めも" , 4);
+            System.out.println(items.size() + "件読み込みました");
+        } catch (IOException e) {
+            System.out.println("CSVの読み込みに失敗しました。");
+        }
+
+        
+
+
+        //reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
+        //reviewManager.addReviewItem("html", "例", "めも" , 4);
         
         
 
