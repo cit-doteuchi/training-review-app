@@ -21,12 +21,6 @@ public class Main {
         } catch (IOException e) {
             System.out.println("CSVの読み込みに失敗しました。");
         }
-
-        
-
-
-        //reviewManager.addReviewItem("Java", "サンプル", "メモ" , 1);
-        //reviewManager.addReviewItem("html", "例", "めも" , 4);
         
         
 
